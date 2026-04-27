@@ -1,0 +1,19 @@
+[Unit]
+Description=PM Alpha Bot Monitoring Console
+After=network-online.target tailscaled.service docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/PJ_AUTO_TRADE_BOT
+EnvironmentFile=-/etc/pm-alpha-bot/console.env
+ExecStart=/root/PJ_AUTO_TRADE_BOT/scripts/start_console.sh
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

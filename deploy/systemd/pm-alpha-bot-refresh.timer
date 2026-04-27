@@ -1,0 +1,11 @@
+[Unit]
+Description=Run PM Alpha Bot Data Refresh Periodically
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=5m
+AccuracySec=15s
+Unit=pm-alpha-bot-refresh.service
+
+[Install]
+WantedBy=timers.target

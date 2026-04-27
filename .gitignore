@@ -1,0 +1,13 @@
+.env
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+dist/
+build/
+*.pyc
+__pycache__/
+*.db
+pm_alpha_bot.db

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run PM Alpha Bot Live Healthcheck Periodically
+
+[Timer]
+OnBootSec=45s
+OnUnitActiveSec=30s
+AccuracySec=5s
+Unit=pm-alpha-bot-healthcheck.service
+
+[Install]
+WantedBy=timers.target

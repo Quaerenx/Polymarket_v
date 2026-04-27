@@ -1,0 +1,21 @@
+[Unit]
+Description=PM Alpha Bot Live Supervisor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pm-bot
+Group=pm-bot
+WorkingDirectory=/opt/pm-alpha-bot
+EnvironmentFile=/etc/pm-alpha-bot/live.env
+ExecStart=/opt/pm-alpha-bot/.venv/bin/pm-bot trade live-loop --live --submit-new-orders
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

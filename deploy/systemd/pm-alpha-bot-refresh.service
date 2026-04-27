@@ -1,0 +1,14 @@
+[Unit]
+Description=PM Alpha Bot Data Refresh
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/PJ_AUTO_TRADE_BOT
+EnvironmentFile=-/etc/pm-alpha-bot/console.env
+EnvironmentFile=-/etc/pm-alpha-bot/refresh.env
+ExecStart=/root/PJ_AUTO_TRADE_BOT/scripts/run_refresh_cycle.sh
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true

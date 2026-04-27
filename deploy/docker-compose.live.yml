@@ -1,0 +1,40 @@
+services:
+  live-bot:
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+    working_dir: /app
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    volumes:
+      - ..:/app
+    command:
+      - uv
+      - run
+      - --python
+      - "3.12"
+      - --extra
+      - live
+      - pm-bot
+      - trade
+      - live-loop
+      - --live
+      - --submit-new-orders
+    healthcheck:
+      test:
+        - CMD
+        - uv
+        - run
+        - --python
+        - "3.12"
+        - pm-bot
+        - ops
+        - healthcheck
+        - --require-live-supervisor
+        - --fail-on-kill-switch
+        - --fail-on-supervisor-error
+        - --max-supervisor-age-sec
+        - "30"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 45s
